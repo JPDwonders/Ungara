@@ -2,6 +2,7 @@
 name = "ungara"
 version = "0.0.1"
 edition = "2024"
+description = "A reactive TUI library for Rust."
 license = "GPL-3.0-or-later"
 repository = "https://github.com/JPDwonders/Ungara.git"
 
