@@ -6,3 +6,4 @@ license = "GPL-3.0-or-later"
 repository = "https://github.com/JPDwonders/Ungara.git"
 
 [dependencies]
+crossterm = "0.29.0"
