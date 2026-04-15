@@ -1,23 +1,21 @@
-pub trait StringWithWhitespaceChecker {
+pub trait WhitespaceChecker {
     fn is_whitespace(&self) -> bool;
 }
 
-impl StringWithWhitespaceChecker for String {
+impl WhitespaceChecker for String {
     fn is_whitespace(&self) -> bool {
         self.trim().is_empty()
     }
 }
 
-impl StringWithWhitespaceChecker for str {
+impl WhitespaceChecker for str {
     fn is_whitespace(&self) -> bool {
         self.trim().is_empty()
     }
 }
 
-
-
-impl StringWithWhitespaceChecker for Option<String> {
+impl<S: WhitespaceChecker> WhitespaceChecker for Option<S> {
     fn is_whitespace(&self) -> bool {
-        self.as_ref().map_or(false, |s| s.trim().is_empty() )
+        self.as_ref().map_or(false, S::is_whitespace)
     }
 }
