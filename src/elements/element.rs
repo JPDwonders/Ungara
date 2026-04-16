@@ -1,18 +1,22 @@
 use std::io::Result;
+use crate::elements::style::{Style, StyleKind};
 
 pub trait Element {
-    fn set_attribute(&mut self, attribute: AttributeWithValue) -> Result<()>;
-    fn get_attribute(&self, attribute: &Attribute) -> Result<AttributeWithValue>;
+    fn set_id(&mut self, id: &'static str) -> Result<()>;
+    fn set_class(&mut self, class: &'static str) -> Result<()>;
+    fn set_style(&mut self, style: Style) -> Result<()>;
+
+    fn get_id(&self) -> Option<&'static str>;
+    fn get_class(&self) -> Option<&'static str>;
+    fn get_style(&self, kind: StyleKind) -> Option<&Style>;
+
+    fn set_attribute(&mut self, attribute: Attribute) -> Result<()>;
+    fn get_attribute(&self, attribute: &Attribute) -> Result<Attribute>;
 }
 
-pub enum AttributeWithValue {
-    ID(Option<String>),
-    CLASS(Option<String>),
-    STYLE(Option<crate::Style>),
-}
-
-pub enum Attribute {
-    ID,
-    CLASS,
-    STYLE,
+#[derive(Debug)]
+pub enum Attribute{
+    ID(Option<&'static str>),
+    CLASS(Option<&'static str>),
+    STYLE(Vec<Style>),
 }

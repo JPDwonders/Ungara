@@ -8,7 +8,7 @@ impl WhitespaceChecker for String {
     }
 }
 
-impl WhitespaceChecker for str {
+impl WhitespaceChecker for &'static str { 
     fn is_whitespace(&self) -> bool {
         self.trim().is_empty()
     }
